@@ -8,6 +8,7 @@
         Title="Comandos y Menus" Height="450" Width="800">
 
     <Window.Resources>
+        <local:ConvertidorHiden x:Key="ConvertidorHiden"/>
         <ContextMenu x:Key="listaContextMenu">
             <MenuItem Header="Copiar" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy"/>
             <MenuItem Header="Cortar" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut"/>
@@ -45,7 +46,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Vaciar" InputGestureText="Ctrl+V" Command="">
+                <MenuItem Header="Vaciar" InputGestureText="Ctrl+D" Command="local:CustomCommands.Delete">
                     <MenuItem.Icon>
                         <Image Source="./Recursos/delete.ico"/>
                     </MenuItem.Icon>
@@ -53,17 +54,17 @@
             </MenuItem>
             
             <MenuItem Header="Ver">
-                <MenuItem Header="Barra de Herramientas General" IsCheckable="True" IsChecked="True"/>
-                <MenuItem Header="Barra de Herramientas Edición" IsCheckable="True" IsChecked="True"/>
+                <MenuItem x:Name="generalMenuItem" Header="Barra de Herramientas General" IsCheckable="True" IsChecked="True"/>
+                <MenuItem x:Name="edicionMenuItem" Header="Barra de Herramientas Edición" IsCheckable="True" IsChecked="True"/>
             </MenuItem>
         </Menu>
 
         <ToolBarTray DockPanel.Dock="Top">
-            <ToolBar>
+            <ToolBar x:Name="generalToolBar" Visibility="{Binding ElementName=generalMenuItem, Path=IsChecked, Converter={StaticResource ConvertidorHiden}}">
                 <Button x:Name="addButton" Command="ApplicationCommands.New"><Image Source="./Recursos/add.ico"/></Button>
                 <Button x:Name="exitButton"  Command="local:CustomCommands.Exit"><Image Source="./Recursos/exit.ico"/></Button>
             </ToolBar>
-            <ToolBar>
+            <ToolBar x:Name="edicionToolBar" Visibility="{Binding ElementName=edicionMenuItem, Path=IsChecked, Converter={StaticResource ConvertidorHiden}}">
                 <Button x:Name="copyButton"  Command="ApplicationCommands.Copy"><Image Source="./Recursos/copy.ico"/></Button>
                 <Button x:Name="pasteButton"  Command="ApplicationCommands.Paste"><Image Source="./Recursos/paste.ico"/></Button>
                 <Button x:Name="deleteButton"  Command="local:CustomCommands.Delete"><Image Source="./Recursos/delete.ico"/></Button>
