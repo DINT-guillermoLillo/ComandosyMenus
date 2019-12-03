@@ -73,12 +73,33 @@ namespace ComandosyMenus
 
         private void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (itemsListBox.SelectedItem != null && )
+            if (itemsListBox.SelectedItem != null)
                 e.CanExecute = true;
             else
                 e.CanExecute = false;
         }
 
+        private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
 
+        }
+
+        private void ExitCommand_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteCommand_CanExecuted(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (itemsListBox.SelectedItem != null)
+                e.CanExecute = true;
+            else
+                e.CanExecute = false;
+        }
     }
 }

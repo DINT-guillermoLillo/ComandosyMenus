@@ -11,6 +11,7 @@
         <ContextMenu x:Key="listaContextMenu">
             <MenuItem Header="Copiar" InputGestureText="Ctrl+C" Command="ApplicationCommands.Copy"/>
             <MenuItem Header="Cortar" InputGestureText="Ctrl+X" Command="ApplicationCommands.Cut"/>
+            <Separator/>
             <MenuItem Header="Pegar" InputGestureText="Ctrl+V" Command="ApplicationCommands.Paste"/>
         </ContextMenu>
     </Window.Resources>
@@ -25,7 +26,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Salir" InputGestureText="Alt+F4" Command="">
+                <MenuItem Header="Salir" InputGestureText="Alt+F4" Command="local:CustomCommands.Exit">
                     <MenuItem.Icon>
                         <Image Source="./Recursos/exit.ico"/>
                     </MenuItem.Icon>
@@ -60,12 +61,12 @@
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
                 <Button x:Name="addButton" Command="ApplicationCommands.New"><Image Source="./Recursos/add.ico"/></Button>
-                <Button x:Name="exitButton"  Command=""><Image Source="./Recursos/exit.ico"/></Button>
+                <Button x:Name="exitButton"  Command="local:CustomCommands.Exit"><Image Source="./Recursos/exit.ico"/></Button>
             </ToolBar>
             <ToolBar>
                 <Button x:Name="copyButton"  Command="ApplicationCommands.Copy"><Image Source="./Recursos/copy.ico"/></Button>
                 <Button x:Name="pasteButton"  Command="ApplicationCommands.Paste"><Image Source="./Recursos/paste.ico"/></Button>
-                <Button x:Name="deleteButton"  Command=""><Image Source="./Recursos/delete.ico"/></Button>
+                <Button x:Name="deleteButton"  Command="local:CustomCommands.Delete"><Image Source="./Recursos/delete.ico"/></Button>
             </ToolBar>
         </ToolBarTray>
 
@@ -94,6 +95,18 @@
             Command="ApplicationCommands.Paste"
             Executed="PasteCommand_Executed"
             CanExecute="PasteCommand_CanExecute"/>
+        <CommandBinding
+            Command="ApplicationCommands.Paste"
+            Executed="PasteCommand_Executed"
+            CanExecute="PasteCommand_CanExecute"/>
+        <CommandBinding
+            Command="local:CustomCommands.Exit"
+            Executed="ExitCommand_Executed"
+            CanExecute="ExitCommand_CanExecuted"/>
+        <CommandBinding
+            Command="local:CustomCommands.Delete"
+            Executed="DeleteCommand_Executed"
+            CanExecute="DeleteCommand_CanExecuted"/>
     </Window.CommandBindings>
     
 </Window>
